@@ -15,6 +15,7 @@ IntBST::IntBST() {
 // destructor deletes all nodes
 IntBST::~IntBST() {
     clear(root); 
+    root = nullptr;
 }
 
 // recursive helper for destructor
