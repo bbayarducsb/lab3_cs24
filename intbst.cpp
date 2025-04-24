@@ -242,7 +242,47 @@ int IntBST::getSuccessor(int value) const{
 // deletes the Node containing the given value from the tree
 // returns true if the node exist and was deleted or false if the node does not exist
 bool IntBST::remove(int value){
-    Node* target = getNodeFor(value, root);  
+    Node* target = getNodeFor(value, root); 
+    if(target == nullptr) {
+        return false; 
+    } 
+    if(target->left == nullptr && target->right == nullptr) {
+        if(target == root) {
+                delete target; 
+                root = nullptr;
+        } else if(target == target->parent->left) {
+                target->parent->left = nullptr; 
+                delete target; 
+        } else if(target == target->parent->right) {
+                target->parent->right = nullptr; 
+                delete target; 
+        }
+        return true; 
+    }
+    Node* p = getPredecessorNode(value); 
+        if(p == nullptr) {
+            target->left = nullptr; 
+            delete p; 
+            return true;
+        }
+        cerr << p->info; 
+        target->info = p->info; 
+        if(p->left != nullptr) { // shouldnt be able to have right
+            Node* temp = p->left; 
+            p->info = temp->info; 
+            p->left = temp->left; 
+            p->right = temp->right; 
+            delete temp; 
+        } else {
+            target->left = nullptr; 
+            delete p; 
+        }
+        return true; 
+}
+
+/* this attempt i could just not get work so i restarted
+
+Node* target = getNodeFor(value, root);  
     if(target != nullptr) {
         if(target->left != nullptr) {
             Node* p = getPredecessorNode(target->info); 
@@ -287,7 +327,6 @@ bool IntBST::remove(int value){
                 return true; 
             }
         } else {
-            Node* parent = target->parent; 
             if(target == root) {
                 delete target; 
                 root = nullptr;
@@ -303,4 +342,4 @@ bool IntBST::remove(int value){
     } else {
         return false;
     }
-}
+    */
