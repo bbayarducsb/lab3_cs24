@@ -269,7 +269,7 @@ bool IntBST::remove(int value){
             Node* s = getSuccessorNode(target->info); 
             target->info = s->info; 
             Node* temp = s->right; 
-            if(temp == nullptr) {
+            if(s->right == nullptr && s->left == nullptr) {
                 Node* parent = s->parent; 
                 if(s == parent->left) {
                     delete parent->left; 
