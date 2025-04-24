@@ -288,7 +288,10 @@ bool IntBST::remove(int value){
             }
         } else {
             Node* parent = target->parent; 
-            if(target == parent->left) {
+            if(target == root) {
+                delete target; 
+                root = nullptr;
+            } else if(target == parent->left) {
                 delete parent->left; 
                 parent->left = nullptr; 
             } else if(target == parent->right) {
