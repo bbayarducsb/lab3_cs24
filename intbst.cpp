@@ -183,7 +183,7 @@ IntBST::Node* IntBST::getPredecessorNode(int value) const{
                     return parent; 
                 }
             } else {
-                loc = parent; 
+                return parent;  
             }
         }
         return nullptr; 
@@ -223,7 +223,7 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const{
                     return parent; 
                 }
             } else {
-                loc = parent; 
+                return parent;
             }
         }
         return nullptr;
